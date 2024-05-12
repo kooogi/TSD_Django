@@ -1,0 +1,23 @@
+# Byte-compiled / optimized
+__pycache__/
+*.py[cod]
+
+# backup files
+*~
+
+.*.swn
+
+# local files
+.env
+reports
+.cache
+.*.swn
+
+venv*/
+
+db.sqlite3
+.idea
+.coverage
+.vscode/
+
+**/.DS_Store

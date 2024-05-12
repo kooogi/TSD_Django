@@ -1,0 +1,42 @@
+version: "3.3"
+
+services:
+  postgres:
+    restart: unless-stopped
+    build:
+      context: ./docker/postgres
+      dockerfile: Dockerfile
+    image: tsd-postgres:latest
+    volumes:
+      - "postgres:/var/lib/postgresql/data"
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    expose:
+      - "5432"
+    ports:
+      - "5432:5432"
+
+  django:
+    restart: unless-stopped
+    build:
+      context: ./docker/django
+      dockerfile: Dockerfile
+    image: tsd-django:latest
+    volumes:
+      - .:/code
+    expose:
+      - "8000"
+    ports:
+      - "8000:8000"
+    environment:
+      - POSTGRES_NAME=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    depends_on:
+      - postgres
+
+
+volumes:
+  postgres:
