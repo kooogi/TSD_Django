@@ -8,3 +8,9 @@ class TaskSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Task
         fields = '__all__'
+
+
+class CarSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Car
+        fields = ['model', 'year', 'price', 'mileage']
